@@ -24,13 +24,13 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.black12,
+      backgroundColor: CustomColors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: CustomColors.white),
-        backgroundColor: CustomColors.black12,
+        iconTheme: IconThemeData(color: CustomColors.black87),
+        backgroundColor: CustomColors.white,
         title: Text(
           "Add Note",
-          style: TextStyle(color: CustomColors.white),
+          style: TextStyle(color: CustomColors.black87),
         ),
       ),
       body: SingleChildScrollView(
@@ -44,7 +44,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 Container(
                   child: Text(
                     'Note No. ${widget.index}', // Convert widget.index to string
-                    style: TextStyle(color: CustomColors.white, fontSize: 18),
+                    style: TextStyle(color: CustomColors.black87, fontSize: 18),
                   ),
                 ),
                 SizedBox(height: 12.0),

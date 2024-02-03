@@ -66,11 +66,11 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.black12,
+      backgroundColor: CustomColors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: CustomColors.white),
-        backgroundColor: CustomColors.black12,
-        title: Text('Edit Note',style: TextStyle(color: CustomColors.white),),
+        iconTheme: IconThemeData(color: CustomColors.black),
+        backgroundColor: CustomColors.white,
+        title: Text('Edit Note',style: TextStyle(color: CustomColors.black),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

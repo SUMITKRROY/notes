@@ -4,6 +4,7 @@ import 'package:notes/utils/colors.dart';
 import 'package:notes/view/weather_screen.dart';
 import '../database/table/notes_table.dart';
 import '../provider/notes/notes_bloc.dart';
+import '../utils/widgets/search_button.dart';
 import 'add_note.dart';
 import 'edit_page.dart'; // Import your AddNoteScreen
 
@@ -16,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Map<String, dynamic>> notes = [];
-
+  List<String> searchNotes = [];
   @override
   void initState() {
     super.initState();
@@ -46,19 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadNotes();
   }
 
+  void updateSearchResults(List<String> results) {
+    setState(() {
+      searchNotes = results;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.black12,
+      backgroundColor: CustomColors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: CustomColors.white),
-        backgroundColor: CustomColors.black12,
-        title: Text(
-          "Note Pad",
-          style: TextStyle(color: CustomColors.white),
+        automaticallyImplyLeading: false,
+        title: CustomSearch(
+          data: searchNotes,
+          onSearchResultsChanged: updateSearchResults, title: 'Note pad',
         ),
       ),
-      drawer: Drawer(),
 
       body: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
@@ -93,10 +98,13 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         child: Icon(Icons.add),
-        backgroundColor: CustomColors.grey,
+        backgroundColor: CustomColors.white,
+
       ),
     );
   }
+
+
   _buildScreen(BuildContext context){
     return RefreshIndicator(
       onRefresh: () async {
@@ -107,13 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ? Center(
         child: Text(
           'Please add notes',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black,fontSize: 24),
         ),
       )
           : ListView.builder(
-        itemCount: notes.length,
+        itemCount: notes.length ,
         itemBuilder: (context, index) {
           final title = notes[index][NotesTable.title] ?? 'No title';
+          final content = notes[index][NotesTable.content] ?? 'No content';
           final id = notes[index][NotesTable.id] as int? ?? -1;
 
           return Container(
@@ -124,7 +133,13 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListTile(
               title: Text(
                 title,
-                style: TextStyle(color: CustomColors.white),
+                style: TextStyle(color: CustomColors.black87,fontWeight: FontWeight.w500),
+              ),
+              subtitle: Text(
+                content,
+                maxLines: 1, // Display only one line of content
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: CustomColors.black87,fontSize: 14),
               ),
               onTap: () {
                 // Navigate to edit note screen
@@ -136,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               trailing: IconButton(
-                icon: Icon(Icons.delete, color: CustomColors.white),
+                icon: Icon(Icons.delete, color: Colors.red.shade300),
                 onPressed: () {
                   _deleteNoteFromDatabase(id);
                 },

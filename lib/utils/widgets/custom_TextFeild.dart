@@ -53,7 +53,7 @@ class _CustomTextField extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: widget.maxline,
-      style: const TextStyle( fontSize: 18,color: CustomColors.white),
+      style: const TextStyle( fontSize: 18,color: CustomColors.black),
       inputFormatters: widget.inputFormatters,
       validator:(val) {
         if (val == '') return 'Enter a valid ${widget.validatorLable}';
@@ -65,7 +65,7 @@ class _CustomTextField extends State<CustomTextField> {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: CustomColors.white),
+            borderSide: BorderSide(color: CustomColors.black),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: CustomColors.grey),
@@ -75,8 +75,8 @@ class _CustomTextField extends State<CustomTextField> {
           border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10))),
           labelText:  widget.label,
-          labelStyle: TextStyle(color: CustomColors.white),
-          fillColor: Colors.black87,
+          labelStyle: TextStyle(color: CustomColors.black),
+          fillColor: Colors.white,
           filled: true),
       obscureText: widget.obscured,
     );

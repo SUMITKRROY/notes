@@ -15,7 +15,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       try{
         var dio = Dio();
         var response = await dio.request(
-          'https://api.openweathermap.org/data/2.5/weather?q=delhi&appid=930165a4649e9a547208f01e167e0a79',
+          'https://api.openweathermap.org/data/2.5/weather?q=${event.cities}&appid=930165a4649e9a547208f01e167e0a79',
           options: Options(
             method: 'GET',
           ),
