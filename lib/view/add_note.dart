@@ -49,7 +49,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 ),
                 SizedBox(height: 12.0),
                 CustomTextField(
-                  label: 'Email',
+                  label: 'Title',
                   onChanged: (val) => {},
                   controller: _titleController,
                   keyboardType: TextInputType.text, validatorLable: 'title',

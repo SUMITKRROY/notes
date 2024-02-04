@@ -78,7 +78,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CustomTextField(
-              label: 'Email',
+              label: 'Title',
               onChanged: (val) => {},
               controller: _titleController,
               keyboardType: TextInputType.text, validatorLable: 'title',
